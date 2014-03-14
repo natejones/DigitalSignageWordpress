@@ -17,8 +17,7 @@
 
 		<?php dynamic_sidebar("Dock"); ?>
 	</div>
-	<?php wp_footer(); ?>
-	<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js' type='text/javascript' charset='utf-8'></script>
+	<?php wp_enqueue_script('jquery'); wp_footer(); ?>
 
 	<!-- CDN Fallback -->
 	<script type="text/javascript">
@@ -39,8 +38,8 @@
     <script src="<?php bloginfo('template_url'); ?>/javascripts/vendor/twitterFetcher_v10_min.js"></script>
   
   <script>
-$(function() {
-    $(document).foundation();
+jQuery(function() {
+    jQuery(document).foundation();
 });
 
     twitterFetcher.fetch('393025966789754880', 'tweets', 1, true, true, false);
