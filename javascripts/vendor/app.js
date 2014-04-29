@@ -1,23 +1,27 @@
 jQuery(document).ready(function ($) {
 
+twelfhourformat = false;
+showseconds = true;
+
 /* REFRESH PAGE EVERY FIVE MINUTES ---- */
 window.setTimeout('location.reload(true)', 300000);
 /* /REFRESH PAGE EVERY FIVE MINUTES ---- */
 
 	/* CLOCK ---------------------------------
-    thanks to @Bluxart :: http://www.alessioatzeni.com/blog/css3-digital-clock-with-jquery/
+	thanks to @Bluxart :: http://www.alessioatzeni.com/blog/css3-digital-clock-with-jquery/
 
-		   Put this into a text widget to display the time & date:
-			<div class="clock">
-				<ul>
-					<li id="hours"> </li>
-					<li id="point">:</li>
-					<li id="min"> </li>
-					<li id="point">:</li>
-					<li id="sec"> </li>
-				</ul>
-				<div id="Date"></div>
-			</div>
+	Put this into a text widget to display the time & date:
+	
+	<div class="clock">
+		<ul>
+			<li id="hours"> </li>
+			<li id="point">:</li>
+			<li id="min"> </li>
+			<li id="point">:</li>
+			<li id="sec"> </li>
+		</ul>
+		<div id="Date"></div>
+	</div>
 	---------------------------------*/
 
 // Create two variable with the names of the months and days in an array
@@ -31,36 +35,33 @@ newDate.setDate(newDate.getDate());
 // Output the day, date, month and year    
 $('#Date').html(dayNames[newDate.getDay()] + ", " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
 
-//setInterval( function() {
-	// Create a newDate() object and extract the seconds of the current time on the visitor's
-//	var seconds = new Date().getSeconds();
-	// Add a leading zero to seconds value
-//	$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-//	},1000);
-	
-setInterval( function() {
-	// Create a newDate() object and extract the minutes of the current time on the visitor's
-	var minutes = new Date().getMinutes();
-	// Add a leading zero to the minutes value
-	$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
-    },1000);
-	
-setInterval( function() {
-	// Create a newDate() object and extract the hours of the current time on the visitor's
-	var hours = new Date().getHours();
-	if(hours>=13){
-		hours -= 12};
-	// Add a leading zero to the hours value
-	$("#hours").html(hours);
-    }, 1000);
-});
+// update clock every second
+setInterval(function() {updateClock()}, 1000);
 
-$( ".dock .columns .textwidget div" ).has( "" ).css( "background-color", "red" );
+// update directly at startup
+updateClock();
+
+function updateClock() {
+        var d = new Date();
+
+	// show 12 or 24h format
+        if (twelfhourformat) {
+                $("#hours").html(d.getHours() % 12);
+        } else {
+                $("#hours").html(d.getHours());
+        }
+
+        // Add a leading zero to the minutes value
+        $("#min").html((d.getMinutes() < 10 ? "0" : "") + d.getMinutes());
+
+        $("#sec").html((d.getSeconds() < 10? "0" : "") + d.getSeconds());
+}
+
+// hide seconds if we don't want to see them
+if (!showseconds) {
+        $("#sec").hide().prev().hide();
+
+}
 
 
-
-if ($('.dock > .columns > .textwidget > div > h6:contains(" double")')) {
-	$('.dock > .columns > .textwidget')
-     return htm.replace(" double", "");
-     
 });
