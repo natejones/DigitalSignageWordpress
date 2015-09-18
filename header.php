@@ -34,6 +34,6 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<div class="content"
+	<div class="content">
 
 		
