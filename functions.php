@@ -293,9 +293,9 @@ foreach ($sidebars as $dock) {
 //***********************
     function load_my_scripts() {
         wp_deregister_script( 'jquery' );
-        wp_register_script('jquery', ('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'), false, '2.1.1');
+        wp_register_script('jquery', ('//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'), false, '2.2.2');
         wp_enqueue_script('jquery');
-        wp_register_script('weather', '//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js');
+        wp_register_script('weather', '//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js');
         wp_enqueue_script('weather');
 
     }
